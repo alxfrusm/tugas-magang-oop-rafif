@@ -27,7 +27,7 @@ class transaksi{
 
     void display(){
         cout << "ID: " << id << ", Tipe Transaksi: " << tipe << ", Amount: " << jumlahTransaksi
-             << ", Kategori: " << kategori << ", Tanggal Transaksi: " << tanggal << ", Saldo: " << saldo << endl;
+             << ", Kategori: " << kategori << ", Tanggal Transaksi: " << tanggal << endl;
     }
 };
 
@@ -41,11 +41,6 @@ class menghitung{
         transaksi newtransaksi(nextid, jumlahtransaksi, tipe, kategori, tanggal);
         Transaksi[nextid++] = newtransaksi;
         cout << "Transaksi Berhasil" << endl;
-        if(tipe == "Pemasukan"){
-            saldo += jumlahtransaksi;
-        }else if(tipe == "pengeluaran"){
-            saldo -= jumlahtransaksi;
-        }
     }
     void readtransaksi(){
         for(auto itr = Transaksi.begin(); itr != Transaksi.end(); itr++){
@@ -78,7 +73,7 @@ int main(){
     do {
         cout << "\nPersonal Finance Manager\n";
         cout << "1. Tambah Transaksi\n";
-        cout << "2. Lihat Transaksi dan Saldo\n";
+        cout << "2. Lihat Transaksi\n";
         cout << "3. Perbarui Transaksi\n";
         cout << "4. Hapus Transaksi\n";
         cout << "5. Keluar\n";

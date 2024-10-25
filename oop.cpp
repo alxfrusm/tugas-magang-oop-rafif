@@ -3,30 +3,31 @@
 #include <string>
 
 using namespace std;
+int saldo = 0;
 
 class transaksi{
     private:
     int id;
-    double jumlahTabungan;
+    double jumlahTransaksi;
     string tipe, kategori, tanggal; 
 
     public:
-    transaksi() : id(0), jumlahTabungan(0.0), tipe(""), kategori(""), tanggal("") {}
-    transaksi(int id, double jumlahTabungan, string tipe, string kategori, string tanggal) : id(id), jumlahTabungan(jumlahTabungan), tipe(tipe), kategori(kategori), tanggal(tanggal) {}
+    transaksi() : id(0), jumlahTransaksi(0.0), tipe(""), kategori(""), tanggal("") {}
+    transaksi(int id, double jumlahTransaksi, string tipe, string kategori, string tanggal) : id(id), jumlahTransaksi(jumlahTransaksi), tipe(tipe), kategori(kategori), tanggal(tanggal) {}
 
     int getid(){return id;};
-    double getjumlahTabungan(){return jumlahTabungan;};
+    double getjumlahTransaksi(){return jumlahTransaksi;};
     string gettipe(){return tipe;};
     string getkategori(){return kategori;};
     string gettanggal(){return tanggal;};
 
-    void setjumlahTabungan(double jumlahtabungan){jumlahTabungan = jumlahtabungan;}
+    void setjumlahTransaksi(double jumlahtransaksi){jumlahTransaksi = jumlahtransaksi;}
     void setkategori(string Kategori){kategori = Kategori;}
     void settanggal(string Tanggal){tanggal = Tanggal;}
 
     void display(){
-        cout << "ID: " << id << ", Tipe Transaksi: " << tipe << ", Amount: " << jumlahTabungan
-             << ", Kategori: " << kategori << ", Tanggal Transaksi: " << tanggal << endl;
+        cout << "ID: " << id << ", Tipe Transaksi: " << tipe << ", Amount: " << jumlahTransaksi
+             << ", Kategori: " << kategori << ", Tanggal Transaksi: " << tanggal << ", Saldo: " << saldo << endl;
     }
 };
 
@@ -40,6 +41,11 @@ class menghitung{
         transaksi newtransaksi(nextid, jumlahtransaksi, tipe, kategori, tanggal);
         Transaksi[nextid++] = newtransaksi;
         cout << "Transaksi Berhasil" << endl;
+        if(tipe == "Pemasukan"){
+            saldo += jumlahtransaksi;
+        }else if(tipe == "pengeluaran"){
+            saldo -= jumlahtransaksi;
+        }
     }
     void readtransaksi(){
         for(auto itr = Transaksi.begin(); itr != Transaksi.end(); itr++){
@@ -48,7 +54,7 @@ class menghitung{
     }
     void updatetransaksi(int id, double transaksi, string tipe, string kategori, string tanggal){
         if (Transaksi.find(id) != Transaksi.end()) {
-            Transaksi[id].setjumlahTabungan(transaksi);
+            Transaksi[id].setjumlahTransaksi(transaksi);
             Transaksi[id].setkategori(kategori);
             Transaksi[id].settanggal(tanggal);
             cout << "data berhasil diupdate" << endl;
@@ -85,7 +91,7 @@ int main(){
 
             cout << "Masukkan jumlah: ";
             cin >> jumlah;
-            cout << "Masukkan tipe (Income/Expense): ";
+            cout << "Masukkan tipe (Pemasukan/Pengeluaran): ";
             cin >> tipe;
             cout << "Masukkan kategori: ";
             cin >> kategori;

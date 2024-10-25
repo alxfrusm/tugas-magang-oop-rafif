@@ -78,7 +78,7 @@ int main(){
     do {
         cout << "\nPersonal Finance Manager\n";
         cout << "1. Tambah Transaksi\n";
-        cout << "2. Lihat Transaksi\n";
+        cout << "2. Lihat Transaksi dan Saldo\n";
         cout << "3. Perbarui Transaksi\n";
         cout << "4. Hapus Transaksi\n";
         cout << "5. Keluar\n";
